@@ -4,5 +4,7 @@
 build/
 node_modules/
 *.pex
+fs/backups/
+fs/content/
 
 
