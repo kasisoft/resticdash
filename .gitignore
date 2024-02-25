@@ -1,0 +1,8 @@
+.idea/
+.svelte-kit/
+.vscode/
+build/
+node_modules/
+*.pex
+
+
