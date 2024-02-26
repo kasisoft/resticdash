@@ -30,7 +30,7 @@ def get_args() -> tuple[str, Optional[str], bool]:
     parser = argparse.ArgumentParser(
         prog='resticdash',
         description='Provides API endpoints to query restic snapshot infos for display',
-        epilog='-- Daniel Kasmeroglu (daniel.kasmeroglu@kasisoft.com) (change to github!)'
+        epilog='-- https://github.com/kasisoft/resticdash'
     )
 
     parser.add_argument('-s', '--static', help='Location of the frontend code', required=False)

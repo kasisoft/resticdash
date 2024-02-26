@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 setup(
     name='resticdash',
     version='0.1.0',
-    url='',
+    url='https://github.com/kasisoft/resticdash',
     license='MIT',
     author='Daniel Kasmeroglu',
     author_email='daniel.kasmeroglu@kasisoft.com',
