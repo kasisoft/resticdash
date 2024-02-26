@@ -40,4 +40,5 @@ chmod +x "${PACKAGEDIR}/uninstall.sh"
 
 echo "Creating archive..."
 tar zcf "${DIRNAME}/resticdash-${TAG}.tgz" "resticdash/"
+git tag ${TAG}
 echo "Done"
