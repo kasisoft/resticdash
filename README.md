@@ -62,6 +62,24 @@ Further information can be found here: [README.md](./install/README.md)
 [MIT][license] © [Kasisoft.com] - <daniel.kasmeroglu@kasisoft.com>
 
 
+## Technologies
+
+* [arktype] - Type specification and object validation. #arktype
+* [axios] - HTTP Client #axios
+* [flask] - Minimal HTTP server for Python #flask #python
+* [flowbite] - [tailwindcss] based UI components #flowbite #tailwindcss
+* [pex] - Bundler and launcher for [python] applications #python #pex
+* [pnpm] - Package management alternative for frontends #pnpm
+* [python] - Implementation language used for the backend #python
+* [restic] - Backupsoftware written in [Golang](https://go.dev/) #restic
+* [resticpy] - [python] wrapper for [restic] #python #restic
+* [svelte] - Frontend framework #svelte #svelte5
+* [tailwindcss] - Collection of systematically specific CSS classes #tailwindcss
+* [typescript] - Typed extension to Javascript #typescript
+* [vite] - Great build platform for frontend projects #vite
+* [yaml] - Text based and well structured format #yaml
+
+
 [arktype]: https://arktype.io/
 [axios]: https://axios-http.com/docs/intro
 [flask]: https://flask.palletsprojects.com/en/3.0.x/
