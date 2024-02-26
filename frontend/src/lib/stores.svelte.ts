@@ -56,6 +56,7 @@ function createStore<T>(key: string, defaultValue: T, deserializer: Deserializer
 
 }
 
+const alertStore = createStore<string>('alertState', '');
 const applicationStateStore = createStore<ApplicationState>('applicationState', ApplicationState.Display);
 
-export { applicationStateStore };
+export { alertStore, applicationStateStore };
