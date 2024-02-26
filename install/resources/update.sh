@@ -5,7 +5,7 @@ if [ "$(whoami)" != "root" ]; then
     exit 1
 fi
 
-export DIRNAME=$(readlink -f $(dirname .))
+export DIRNAME=$(readlink -f $(dirname $0))
 
 
 echo "Stopping service..."
