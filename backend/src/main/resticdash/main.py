@@ -40,6 +40,15 @@ def view_get_restic():
     if backupmanager is not None:
         return backupmanager.get_all_backup_infos()
     return []
+
+
+def view_get_restic_record(name: str):
+    if backupmanager is not None:
+        result = backupmanager.get_backup_infos(name)
+        if result is not None:
+            return result.to_dict()
+    raise None
+
 def _load_configuration(configuration_file) -> tuple[Optional[CfgResticDash], list[str]]:
     result = load_yaml(CfgResticDash, configuration_file, True)
     to_remove: list[str] = []
@@ -57,6 +66,7 @@ def _setup_flask(static_dir: Optional[str]) -> StoppableFlask:
 
     api_blueprint = Blueprint('api', __name__)
     api_blueprint.add_url_rule('/restic', 'get_restic', view_get_restic)
+    api_blueprint.add_url_rule('/restic/<name>', 'get_restic_record', view_get_restic_record)
     api_blueprint.add_url_rule('/config', 'get_frontend_config', view_get_frontend_config)
     result.register_blueprint(api_blueprint, f'{configuration.settings.context_path}/api')
 
