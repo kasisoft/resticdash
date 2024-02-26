@@ -1,0 +1,21 @@
+name: Build Script
+
+on:
+    push:
+        branches:
+            - main
+
+
+jobs:
+    execute-script:
+        runs-on: ubuntu-latest
+        steps:
+
+            - name: Checkout repository
+              uses: actions/checkout@v2
+
+            - name: Execute build script
+              run: |
+                  chmod +x ./install/build.sh
+                  ./install/build.sh
+
