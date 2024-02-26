@@ -1,7 +1,23 @@
 <script lang="ts">
     import '$src/styles.pcss';
     import ErrorMessageView from '$lib/components/ErrorMessageView.svelte';
+    import Header from '$lib/components/Header.svelte';
+    import Footer from '$lib/components/Footer.svelte';
+    import { dictionary, getLocaleFromNavigator, getLocaleFromQueryString, init } from 'svelte-i18n';
     export let data;
+
+    dictionary.set(data.dictionary);
+
+    let lang = getLocaleFromQueryString('lang');
+    if (!lang) {
+        lang = getLocaleFromNavigator();
+    }
+
+    init({
+        fallbackLocale: 'en',
+        initialLocale: lang, 
+    });
+
 </script>
 
 <div class="app content-grid">
