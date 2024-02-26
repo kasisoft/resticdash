@@ -1,3 +1,4 @@
+import shutil
 import os
 
 from resticdash.resticdashexception import ResticDashException
@@ -16,6 +17,11 @@ def require_file(filepath: str):
 def require_directory(filepath: str):
     if not os.path.isdir(filepath):
         raise ResticDashException(f"'{filepath}' must be a directory !")
+
+
+def require_executable(filepath: str):
+    if not shutil.which(filepath):
+        raise ResticDashException(f"'{filepath}' is not an executable (should be absolute or accessible via the path) !")
 
 
 def require_not_empty(obj, msg: str):
