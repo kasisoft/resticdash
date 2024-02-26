@@ -1,11 +1,13 @@
 <script lang="ts">
     import '$src/styles.pcss';
+    import ErrorMessageView from '$lib/components/ErrorMessageView.svelte';
     export let data;
 </script>
 
 <div class="app content-grid">
     <header class="full-width content-grid">
         <Header />
+        <ErrorMessageView />
     </header>
     <main class="full-width content-grid">
         <slot />
