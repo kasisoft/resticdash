@@ -24,3 +24,10 @@ jobs:
                   chmod +x ./install/build.sh
                   ./install/build.sh
 
+            - name: Collection Artifacts
+              uses: actions/upload-artifact@v2
+              with:
+                  name: resticdash
+                  path: ./install/resticdash-*.tgz
+
+
