@@ -1,0 +1,67 @@
+#
+# All properties with a default value are allowed to be omitted.
+#
+
+# Used for potential future purposes.
+version: 1      # Default: 1
+
+
+# This section provides configuration for the frontend part of this application.
+# frontend:
+
+    # The timeout in seconds until a request to the server will be aborted.
+    # timeout: 10     # Default: 10
+
+    # The time in seconds until the frontend will refresh the overview.
+    # reload: 60      # Default: 60
+
+
+# General settings for this application.
+# settings:
+
+    # The log level to be used after this configuration file has been parsed
+    # log_level: DEBUG
+
+    # The location of the restic executable. It will be taken of the PATH if available.
+    # restic: restic      # Default: restic
+
+    # The time in seconds until backup information will be updated after a change had been detected.
+    # delay: 60          # Default: 600
+
+    # The time delay in seconds after which a backup should have occured. If this time is exceeded the backup
+    # will be considered to be overdue.
+    # backup_fail_delay: 86400    # Default: 86400 (1 day)
+
+    # A list of origins allowed to query the backend.
+    #origins:
+    #    - "http://localhost:5000"
+    #    - "http://localhost:5173"
+    #    - "http://localhost:8100"
+    #    - "http://localhost:8080"
+
+    # Allows to specify a context path for the server so every route will be served below this path
+    # which is helpful in conjunction with reverse proxies such as Traefik.
+    # context_path: somewhere        # Default:  ''  (server from the root)
+
+    # The port used to serve the content from.
+    # port: 8100      # Default: 8080
+
+    # The PID file which will receive the process ID. Needed in conjunction with the kill option.
+    # pidfile: /tmp/resticdash.pid            # Default: /var/run/resticdash.pid
+
+
+# This sections provides a list of all restic repositories. The key must be an unique name.
+#backups:
+
+    # The key to be used for this repository.
+#    none:
+
+        # This can be either the password itself or a file containing the password.
+#        password: "e3a9abaa-6089-4973-98b2-1fceb481452c"
+
+        # The location of the repository.
+#        repository: "mydir/backups/none"
+
+        # The time delay in seconds after which a backup should have occured.. If this time is exceeded the backup
+        # will be considered to be overdue.
+#        backup_fail_delay: 86400    # Default: settings.backup_fail_delay

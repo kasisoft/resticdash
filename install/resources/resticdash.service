@@ -1,0 +1,13 @@
+[Unit]
+Description=ResticDash - Simple dashboard for restic backups
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/opt/resticdash/resticdash.pex -s /opt/resticdash/static -c /etc/resticdash/resticdash.yaml
+ExecStop=/opt/resticdash/resticdash.pex -k -c /etc/resticdash/resticdash.yaml
+Restart=on-failure
+KillSignal=SIGINT
+
+[Install]
+WantedBy=multi-user.target

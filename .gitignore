@@ -9,5 +9,6 @@ fs/content/
 backend/build/
 __pycache__/
 *.egg-info/
-
+install/resticdash/
+install/resticdash*.tgz
 
