@@ -1,3 +1,4 @@
+import tempfile
 import logging
 import yaml
 import os
@@ -31,6 +32,25 @@ def load_yaml(cls, filepath: str, debug: bool = False):
         raise ResticDashException(f"Failed to parse '{filepath}'!", ex)
 
 
+def create_temp_file(content: str) -> str:
+    """
+    Creates a temporary file with the supplied content and returns it's path.
+    """
+
+    try:
+
+        with tempfile.NamedTemporaryFile(mode='w+', delete=False, encoding='utf-8') as temp_file:
+            result = temp_file.name
+            temp_file.write(content)
+
+        # user readable only
+        os.chmod(result, 0o400)
+        return result
+
+    except Exception as ex:
+        raise ResticDashException(f"Failed to create a temporary file !", ex)
+
+
 def remove_files(files: List[str]):
     """
     Removes all files within the supplied list. This function will go through all files and report errors to the log.
@@ -42,3 +62,17 @@ def remove_files(files: List[str]):
         except Exception as ex:
             logger.error(f"Failed to delete file '{file}'.", exc_info=ex)
 
+
+def grant_password_file(password: str) -> (str, bool):
+    """
+    Makes sure to return a file containing the supplied password. If the supplied password value already refers to a file
+    with a password it will be returned as is. Otherwise a temporary file with the supplied password will be created and
+    returned. This function returns a tupel in which the second value is a boolean indicating whether a file had to be
+    created or not.
+    """
+
+    if os.path.isfile(password):
+        # the user directly provided a password file so return it
+        return password, False
+
+    return create_temp_file(password), True
