@@ -4,7 +4,9 @@ import sys
 
 from setproctitle import setproctitle
 
+from resticdash.config import CfgResticDash
 from resticdash.getargs import get_args
+from resticdash.utils.ioutils import load_json
 
 NAME = "resticdash"
 
@@ -22,8 +24,12 @@ def _shutdown(signal, frame):
 
 
 def main():
+
     config_file = get_args()
     logger.info(f"Config file: {config_file}")
+
+    config = load_json(CfgResticDash, config_file)
+    logger.info(f"{config}")
 
 
 if __name__ == '__main__':
