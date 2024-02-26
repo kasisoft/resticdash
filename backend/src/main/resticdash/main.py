@@ -3,10 +3,10 @@ import signal
 import sys
 import os
 
-from typing import Optional
+from typing import Optional, List
 from setproctitle import setproctitle
 
-from resticdash.utils.ioutils import load_yaml
+from resticdash.utils.ioutils import load_yaml, grant_password_file, remove_files
 from resticdash.config import CfgResticDash
 from resticdash.getargs import get_args
 from resticdash.utils.pidutils import PidHandler
@@ -21,11 +21,35 @@ logging.basicConfig(
 
 logger = logging.getLogger(NAME)
 
+removable_password_files: List[str] = []
 configuration: Optional[CfgResticDash] = None
 
 
+def _load_configuration(configuration_file) -> tuple[Optional[CfgResticDash], list[str]]:
+    result = load_yaml(CfgResticDash, configuration_file, True)
+    to_remove: list[str] = []
+    if result is not None:
+        for backup in result.backups.values():
+            backup.password, created = grant_password_file(backup.password)
+            if created:
+                to_remove.append(backup.password)
+    return result, to_remove
+
+
 def _shutdown(signal, frame):
-    pass
+
+    global removable_password_files
+
+    logger.info("Shutting down...")
+
+    if len(removable_password_files) > 0:
+        try:
+            remove_files(removable_password_files)
+        except Exception as ex:
+            logger.error("Failed to delete all password files", exc_info=ex)
+        removable_password_files = []
+
+    logger.info("... completed shutdown")
 
 
 def _kill():
@@ -39,13 +63,13 @@ def _kill():
 
 def main():
 
+    global removable_password_files
     global configuration
-    global logger
 
     config_file, kill = get_args()
     logger.info(f"Config file: {config_file}")
 
-    configuration = load_yaml(CfgResticDash, config_file)
+    configuration, removable_password_files = _load_configuration(config_file)
     logging.basicConfig(level = configuration.settings.log_level.value[0])
     logger.setLevel(configuration.settings.log_level.value[0])
 
