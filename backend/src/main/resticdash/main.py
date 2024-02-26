@@ -9,6 +9,7 @@ from setproctitle import setproctitle
 from resticdash.utils.ioutils import load_yaml, grant_password_file, remove_files
 from resticdash.config import CfgResticDash
 from resticdash.getargs import get_args
+from resticdash.resticsupport.backupmanager import BackupManager
 from resticdash.utils.pidutils import PidHandler
 
 NAME = "resticdash"
@@ -21,6 +22,7 @@ logging.basicConfig(
 
 logger = logging.getLogger(NAME)
 
+backupmanager: Optional[BackupManager] = None
 removable_password_files: List[str] = []
 configuration: Optional[CfgResticDash] = None
 
@@ -39,6 +41,7 @@ def _load_configuration(configuration_file) -> tuple[Optional[CfgResticDash], li
 def _shutdown(signal, frame):
 
     global removable_password_files
+    global backupmanager
 
     logger.info("Shutting down...")
 
@@ -48,6 +51,13 @@ def _shutdown(signal, frame):
         except Exception as ex:
             logger.error("Failed to delete all password files", exc_info=ex)
         removable_password_files = []
+
+    if backupmanager is not None:
+        try:
+            backupmanager.stop()
+        except Exception as ex:
+            logger.error("Failed to stop the BackupManager", exc_info=ex)
+        backupmanager = None
 
     logger.info("... completed shutdown")
 
@@ -61,13 +71,22 @@ def _kill():
     logger.info("Done")
 
 
+def _resticdash():
+
+    global backupmanager
+
+    backupmanager = BackupManager(configuration)
+    backupmanager.start()
+    backupmanager.join(600)   # stay alive for 10 min
+    _shutdown(None, None)
+
+
 def main():
 
     global removable_password_files
     global configuration
 
     config_file, kill = get_args()
-    logger.info(f"Config file: {config_file}")
 
     configuration, removable_password_files = _load_configuration(config_file)
     logging.basicConfig(level = configuration.settings.log_level.value[0])
@@ -78,7 +97,7 @@ def main():
         return
 
     with PidHandler(configuration.settings.pidfile):
-        pass
+        _resticdash()
 
 
 if __name__ == '__main__':
