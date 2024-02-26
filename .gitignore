@@ -7,5 +7,7 @@ node_modules/
 fs/backups/
 fs/content/
 backend/build/
+__pycache__/
+*.egg-info/
 
 
