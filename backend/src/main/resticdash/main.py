@@ -10,6 +10,7 @@ from resticdash.utils.ioutils import load_yaml, grant_password_file, remove_file
 from resticdash.config import CfgResticDash
 from resticdash.getargs import get_args
 from resticdash.resticsupport.backupmanager import BackupManager
+from resticdash.stoppableflask import StoppableFlask
 from resticdash.utils.pidutils import PidHandler
 
 NAME = "resticdash"
@@ -23,6 +24,7 @@ logging.basicConfig(
 logger = logging.getLogger(NAME)
 
 backupmanager: Optional[BackupManager] = None
+flaskthread: Optional[StoppableFlask] = None
 removable_password_files: List[str] = []
 configuration: Optional[CfgResticDash] = None
 
@@ -38,12 +40,28 @@ def _load_configuration(configuration_file) -> tuple[Optional[CfgResticDash], li
     return result, to_remove
 
 
+def _setup_flask() -> StoppableFlask:
+
+    result = StoppableFlask(__name__, configuration.settings.port, origins=configuration.settings.origins)
+
+
+    return result
+
+
 def _shutdown(signal, frame):
 
+    global flaskthread
     global removable_password_files
     global backupmanager
 
     logger.info("Shutting down...")
+
+    if flaskthread is not None:
+        try:
+            flaskthread.stop()
+        except Exception as ex:
+            logger.error("Failed to stop flask", exc_info=ex)
+        flaskthread = None
 
     if len(removable_password_files) > 0:
         try:
@@ -74,10 +92,14 @@ def _kill():
 def _resticdash():
 
     global backupmanager
+    global flaskthread
 
     backupmanager = BackupManager(configuration)
     backupmanager.start()
-    backupmanager.join(600)   # stay alive for 10 min
+
+    flaskthread = _setup_flask()
+    flaskthread.execute()
+
     _shutdown(None, None)
 
 
