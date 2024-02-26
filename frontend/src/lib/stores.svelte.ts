@@ -1,4 +1,4 @@
-import { ApplicationState } from "$lib/types";
+import { ApplicationState, BackupInfosListDef, DEFAULT_FRONTENDCFG, FrontendCfgDef, type BackupInfosList, type FrontendCfg } from "$lib/types";
 
 function getItem(key: string): string | null {
     if (typeof localStorage === 'undefined') {
@@ -58,5 +58,7 @@ function createStore<T>(key: string, defaultValue: T, deserializer: Deserializer
 
 const alertStore = createStore<string>('alertState', '');
 const applicationStateStore = createStore<ApplicationState>('applicationState', ApplicationState.Display);
+const backupinfosStore = createStore<BackupInfosList>('backupInfos', [], (input) => BackupInfosListDef(input).data);
+const configStore = createStore<FrontendCfg>('frontend', DEFAULT_FRONTENDCFG, (input) => FrontendCfgDef(input).data )
 
-export { alertStore, applicationStateStore };
+export { alertStore, applicationStateStore, backupinfosStore, configStore };
