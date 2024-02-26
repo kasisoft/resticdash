@@ -1,4 +1,4 @@
-import { ApplicationState, BackupInfosListDef, DEFAULT_FRONTENDCFG, FrontendCfgDef, type BackupInfosList, type FrontendCfg } from "$lib/types";
+import { ApplicationState, BackupInfosListDef, DEFAULT_FRONTENDCFG, FrontendCfgDef, type BackupInfosList, type FrontendCfg } from '$lib/types';
 
 function getItem(key: string): string | null {
     if (typeof localStorage === 'undefined') {
@@ -33,7 +33,7 @@ function createStore<T>(key: string, defaultValue: T, deserializer: Deserializer
     let changed = $state(false);
     
     function setValue(newValue: T) {
-        if (newValue === undefined || newValue === null) {
+        if (newValue == undefined || newValue == null) {
             removeItem(key);
         } else {
             setItem(key, JSON.stringify(newValue));

@@ -1,4 +1,4 @@
-import { ark, arrayOf, type } from "arktype";
+import { ark, arrayOf, type } from 'arktype';
 
 export const FrontendCfgDef = type({
     "reload": "number",

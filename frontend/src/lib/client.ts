@@ -1,6 +1,6 @@
-import {  BackupInfosListDef, FrontendCfgDef, type BackupInfosList, type FrontendCfg } from "$lib/types";
+import {  BackupInfosListDef, FrontendCfgDef, type BackupInfosList, type FrontendCfg } from '$lib/types';
 import axios, { type AxiosResponse } from 'axios';
-import type { CheckResult } from "arktype/internal/traverse/traverse.js";
+import type { CheckResult } from 'arktype/internal/traverse/traverse.js';
 
 function isAbsolute(url: string): boolean {
     if (url) {

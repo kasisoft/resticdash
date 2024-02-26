@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { ResticDashClient } from '$lib/client';
+    import { ResticDashClient } from '$lib/client';
+    import { ApplicationState } from '$lib/types';
     import { alertStore, applicationStateStore, backupinfosStore, configStore, progressStore } from '$lib/stores.svelte';
     
-    import { ApplicationState } from "$lib/types";
     import { _ } from 'svelte-i18n';
 
     let timeout: NodeJS.Timeout | null = null;

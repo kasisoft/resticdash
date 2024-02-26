@@ -1,11 +1,14 @@
 <script lang="ts">
+
     import '$src/styles.pcss';
+    import { dictionary, getLocaleFromNavigator, getLocaleFromQueryString, init } from 'svelte-i18n';
+
     import ErrorMessageView from '$lib/components/ErrorMessageView.svelte';
     import Header from '$lib/components/Header.svelte';
     import Footer from '$lib/components/Footer.svelte';
-    import { dictionary, getLocaleFromNavigator, getLocaleFromQueryString, init } from 'svelte-i18n';
-    import { ResticDashClient } from "$lib/client";
-    import { alertStore, configStore } from "$lib/stores.svelte";
+    
+    import { ResticDashClient } from '$lib/client';
+    import { alertStore, configStore } from '$lib/stores.svelte';
 
     export let data;
 

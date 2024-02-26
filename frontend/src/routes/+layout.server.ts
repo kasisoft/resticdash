@@ -1,6 +1,6 @@
-import fs from 'fs';
-import path from 'path';
 import yaml from 'yaml';
+import path from 'path';
+import fs from 'fs';
 
 export async function load() {
     const i18nDir = './src/i18n';

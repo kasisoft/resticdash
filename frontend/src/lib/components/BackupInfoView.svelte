@@ -1,7 +1,7 @@
 <script lang="ts">
 
-    import type { BackupInfos, SnapshotInfo } from "$lib/types";
-    import { _ } from "svelte-i18n";
+    import type { BackupInfos, SnapshotInfo } from '$lib/types';
+    import { _ } from 'svelte-i18n';
 
     export let backupInfo: BackupInfos;
     

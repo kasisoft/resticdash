@@ -1,7 +1,7 @@
 <script lang="ts">
 	
     import { alertStore } from '$lib/stores.svelte';
-    import { _ } from "svelte-i18n";
+    import { _ } from 'svelte-i18n';
 
     function dismiss() {
         alertStore.reset();

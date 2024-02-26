@@ -1,6 +1,6 @@
 <script lang="ts">
     import { backupinfosStore } from '$lib/stores.svelte';
-    import BackupInfoView from "$lib/components/BackupInfoView.svelte";
+    import BackupInfoView from '$lib/components/BackupInfoView.svelte';
     import AutoReload from '$lib/components/AutoReload.svelte';
 </script>
 
