@@ -2,8 +2,11 @@
 
 # Prerequisites
 
+The following applications/features need to be installed:
+
 * Python
 * Virtualenv
+* Restic
 
 
 # Setup
