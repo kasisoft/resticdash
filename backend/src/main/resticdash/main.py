@@ -4,9 +4,9 @@ import sys
 
 from setproctitle import setproctitle
 
+from resticdash.utils.ioutils import load_yaml
 from resticdash.config import CfgResticDash
 from resticdash.getargs import get_args
-from resticdash.utils.ioutils import load_json
 
 NAME = "resticdash"
 
@@ -28,7 +28,7 @@ def main():
     config_file = get_args()
     logger.info(f"Config file: {config_file}")
 
-    config = load_json(CfgResticDash, config_file)
+    config = load_yaml(CfgResticDash, config_file)
     logger.info(f"{config}")
 
 

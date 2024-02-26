@@ -22,7 +22,7 @@ def get_args() -> str:
         epilog='-- Daniel Kasmeroglu (daniel.kasmeroglu@kasisoft.com) (change to github!)'
     )
 
-    parser.add_argument('-c', '--config', help='Location of the configuration file', default='resticdash.json')
+    parser.add_argument('-c', '--config', help='Location of the configuration file', default='resticdash.yaml')
 
     args = parser.parse_args()
 
