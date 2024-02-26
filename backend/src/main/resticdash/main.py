@@ -4,6 +4,7 @@ import sys
 import os
 
 from typing import Optional, List
+from flask import Blueprint, send_from_directory
 from setproctitle import setproctitle
 
 from resticdash.utils.ioutils import load_yaml, grant_password_file, remove_files
@@ -40,10 +41,15 @@ def _load_configuration(configuration_file) -> tuple[Optional[CfgResticDash], li
     return result, to_remove
 
 
-def _setup_flask() -> StoppableFlask:
+def _setup_flask(static_dir: Optional[str]) -> StoppableFlask:
 
     result = StoppableFlask(__name__, configuration.settings.port, origins=configuration.settings.origins)
 
+    if static_dir is not None:
+
+        static_blueprint = Blueprint('static', __name__, static_url_path='/', static_folder=static_dir)
+        static_blueprint.add_url_rule('/', 'static_root', lambda: send_from_directory(static_dir, 'index.html'))
+        result.register_blueprint(static_blueprint, configuration.settings.context_path)
 
     return result
 
@@ -89,7 +95,7 @@ def _kill():
     logger.info("Done")
 
 
-def _resticdash():
+def _resticdash(static_dir: Optional[str] = None):
 
     global backupmanager
     global flaskthread
@@ -97,7 +103,7 @@ def _resticdash():
     backupmanager = BackupManager(configuration)
     backupmanager.start()
 
-    flaskthread = _setup_flask()
+    flaskthread = _setup_flask(static_dir)
     flaskthread.execute()
 
     _shutdown(None, None)
@@ -108,7 +114,7 @@ def main():
     global removable_password_files
     global configuration
 
-    config_file, kill = get_args()
+    config_file, static_dir, kill = get_args()
 
     configuration, removable_password_files = _load_configuration(config_file)
     logging.basicConfig(level = configuration.settings.log_level.value[0])
@@ -119,7 +125,7 @@ def main():
         return
 
     with PidHandler(configuration.settings.pidfile):
-        _resticdash()
+        _resticdash(static_dir)
 
 
 if __name__ == '__main__':
