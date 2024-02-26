@@ -6,6 +6,16 @@
 version: 1      # Default: 1
 
 
+# This section provides configuration for the frontend part of this application.
+frontend:
+
+    # The timeout in seconds until a request to the server will be aborted.
+    timeout: 10     # Default: 10
+
+    # The time in seconds until the frontend will refresh the overview.
+    reload: 60      # Default: 60
+
+
 # General settings for this application.
 settings:
 

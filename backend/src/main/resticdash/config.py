@@ -46,6 +46,17 @@ class CfgBackup:
 
 @dataclass_json
 @dataclass
+class CfgFrontend:
+
+    # the amount of time in seconds until the frontend aborts
+    timeout: int = 10
+
+    # the amount of time until the view will reload the data
+    reload: int = 60
+
+
+@dataclass_json
+@dataclass
 class CfgSettings:
 
     # The location within the filesystem of the restic executable or the name of the executable on the path.
@@ -96,12 +107,15 @@ class CfgResticDash:
 
     backups: Dict[str, CfgBackup] = field(default_factory=dict)
     settings: Optional[CfgSettings] = None
+    frontend: Optional[CfgFrontend] = None
     version: int = 1
 
     def __post_init__(self):
 
         if self.settings is None:
             self.settings = CfgSettings()
+        if self.frontend is None:
+            self.frontend = CfgFrontend()
 
         validation.require_not_empty(self.backups, "There must be at least one backup declaration !")
 
