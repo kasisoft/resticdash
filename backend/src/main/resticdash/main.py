@@ -4,6 +4,8 @@ import sys
 
 from setproctitle import setproctitle
 
+from resticdash.getargs import get_args
+
 NAME = "resticdash"
 
 logging.basicConfig(
@@ -20,7 +22,8 @@ def _shutdown(signal, frame):
 
 
 def main():
-    pass
+    config_file = get_args()
+    logger.info(f"Config file: {config_file}")
 
 
 if __name__ == '__main__':
