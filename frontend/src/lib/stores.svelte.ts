@@ -60,5 +60,6 @@ const alertStore = createStore<string>('alertState', '');
 const applicationStateStore = createStore<ApplicationState>('applicationState', ApplicationState.Display);
 const backupinfosStore = createStore<BackupInfosList>('backupInfos', [], (input) => BackupInfosListDef(input).data);
 const configStore = createStore<FrontendCfg>('frontend', DEFAULT_FRONTENDCFG, (input) => FrontendCfgDef(input).data )
+const progressStore = createStore<number>('progress', DEFAULT_FRONTENDCFG.timeout);
 
-export { alertStore, applicationStateStore, backupinfosStore, configStore };
+export { alertStore, applicationStateStore, backupinfosStore, configStore, progressStore };
