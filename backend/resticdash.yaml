@@ -1,5 +1,12 @@
-version: 2
+#
+# All properties with a default value are allowed to be omitted.
+#
 
+# Used for potential future purposes.
+version: 1      # Default: 1
+
+
+# General settings for this application.
 settings:
 
     # The log level to be used after this configuration file has been parsed
@@ -7,6 +14,13 @@ settings:
 
     # The location of the restic executable. It will be taken of the PATH if available.
     restic: restic      # Default: restic
+
+    # The time in seconds until backup information will be updated after a change had been detected.
+    delay: 60          # Default: 600
+
+    # The time delay in seconds after which a backup should have occured. If this time is exceeded the backup
+    # will be considered to be overdue.
+    backup_fail_delay: 86400    # Default: 86400 (1 day)
 
 
     # The PID file which will receive the process ID. Needed in conjunction with the kill option.
