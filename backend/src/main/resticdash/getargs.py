@@ -14,7 +14,7 @@ def _locate_configuration_file(configfile: str) -> str:
     return result
 
 
-def get_args() -> str:
+def get_args() -> tuple[str, bool]:
 
     parser = argparse.ArgumentParser(
         prog='resticdash',
@@ -23,9 +23,10 @@ def get_args() -> str:
     )
 
     parser.add_argument('-c', '--config', help='Location of the configuration file', default='resticdash.yaml')
+    parser.add_argument('-k', '--kill', help='Kill a potential existing instance', action='store_true')
 
     args = parser.parse_args()
 
     config_file = _locate_configuration_file(args.config)
 
-    return config_file
+    return config_file, args.kill

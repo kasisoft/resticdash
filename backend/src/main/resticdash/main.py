@@ -1,7 +1,9 @@
 import logging
 import signal
 import sys
+import os
 
+from typing import Optional
 from setproctitle import setproctitle
 
 from resticdash.utils.ioutils import load_yaml
@@ -19,18 +21,33 @@ logging.basicConfig(
 
 logger = logging.getLogger(NAME)
 
+configuration: Optional[CfgResticDash] = None
+
 
 def _shutdown(signal, frame):
     pass
 
 
+def _kill():
+
+    pid = PidHandler.read_pid(configuration.settings.pidfile)
+    if pid is not None:
+        logger.info(f"Sending SIGINT to {pid}")
+        os.kill(pid, signal.SIGINT)
+    logger.info("Done")
+
+
 def main():
 
-    config_file = get_args()
+    config_file, kill = get_args()
     logger.info(f"Config file: {config_file}")
 
     configuration = load_yaml(CfgResticDash, config_file)
     logger.info(f"{configuration}")
+
+    if kill:
+        _kill()
+        return
 
     with PidHandler(configuration.settings.pidfile):
         pass
