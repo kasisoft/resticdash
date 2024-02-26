@@ -3,7 +3,7 @@ import os
 
 from dataclasses_json import dataclass_json, config
 from dataclasses import dataclass, field
-from typing import Optional, Dict
+from typing import Optional, Dict, List
 from enum import Enum
 
 from resticdash.resticdashexception import ResticDashException
@@ -57,6 +57,15 @@ class CfgSettings:
     # The time delay in seconds after which a backup should have occured
     backup_fail_delay: int = 86400  # 1 day
 
+    # A list of allowed origins
+    origins: Optional[List[str]] = None
+
+    # The context path for the deployment
+    context_path: str = ''
+
+    # The port to use serving the content
+    port: int = 8080
+
     # Location of the PID file for resticdash
     pidfile: str = '/var/run/resticdash.pid'
 
@@ -67,6 +76,15 @@ class CfgSettings:
     ))
 
     def __post_init__(self):
+        if self.context_path == '/':
+            self.context_path = ''
+        elif len(self.context_path) > 1:
+            if self.context_path[-1] == '/':
+                self.context_path = self.context_path[:-1]
+            if self.context_path[0] != '/':
+                self.context_path = '/' + self.context_path
+        if self.origins is None:
+            self.origins = []
         validation.require_min(self.delay, 60, 'delay')
         validation.require_min(self.backup_fail_delay, 60, 'backup_fail_delay')
         validation.require_executable(self.restic)

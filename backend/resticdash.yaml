@@ -22,6 +22,19 @@ settings:
     # will be considered to be overdue.
     backup_fail_delay: 86400    # Default: 86400 (1 day)
 
+    # A list of origins allowed to query the backend.
+    origins:
+        - "http://localhost:5000"
+        - "http://localhost:5173"
+        - "http://localhost:8100"
+        - "http://localhost:8080"
+
+    # Allows to specify a context path for the server so every route will be served below this path
+    # which is helpful in conjunction with reverse proxies such as Traefik.
+    context_path: biboeder        # Default:  ''  (server from the root)
+
+    # The port used to serve the content from.
+    port: 8100      # Default: 8080
 
     # The PID file which will receive the process ID. Needed in conjunction with the kill option.
     pidfile: /tmp/resticdash.pid            # Default: /var/run/resticdash.pid
