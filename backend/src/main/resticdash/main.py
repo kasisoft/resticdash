@@ -7,6 +7,7 @@ from setproctitle import setproctitle
 from resticdash.utils.ioutils import load_yaml
 from resticdash.config import CfgResticDash
 from resticdash.getargs import get_args
+from resticdash.utils.pidutils import PidHandler
 
 NAME = "resticdash"
 
@@ -28,8 +29,11 @@ def main():
     config_file = get_args()
     logger.info(f"Config file: {config_file}")
 
-    config = load_yaml(CfgResticDash, config_file)
-    logger.info(f"{config}")
+    configuration = load_yaml(CfgResticDash, config_file)
+    logger.info(f"{configuration}")
+
+    with PidHandler(configuration.settings.pidfile):
+        pass
 
 
 if __name__ == '__main__':
