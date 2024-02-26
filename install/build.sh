@@ -4,7 +4,8 @@ export DIRNAME=$(readlink -f $(dirname .))
 export FRONTEND=$(readlink -f "${DIRNAME}/../frontend")
 export BACKEND=$(readlink -f "${DIRNAME}/../backend")
 export PACKAGEDIR="${DIRNAME}/resticdash"
-
+echo $(pwd)
+ls -l
 export OLD_VERSION=$(jq .version "${FRONTEND}/package.json")
 export OLD_VERSION="${OLD_VERSION%\"}"
 export OLD_VERSION="${OLD_VERSION#\"}"
