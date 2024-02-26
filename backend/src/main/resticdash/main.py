@@ -39,11 +39,15 @@ def _kill():
 
 def main():
 
+    global configuration
+    global logger
+
     config_file, kill = get_args()
     logger.info(f"Config file: {config_file}")
 
     configuration = load_yaml(CfgResticDash, config_file)
-    logger.info(f"{configuration}")
+    logging.basicConfig(level = configuration.settings.log_level.value[0])
+    logger.setLevel(configuration.settings.log_level.value[0])
 
     if kill:
         _kill()

@@ -2,5 +2,8 @@ version: 2
 
 settings:
 
+    # The log level to be used after this configuration file has been parsed
+    log_level: DEBUG
+
     # The PID file which will receive the process ID. Needed in conjunction with the kill option.
     pidfile: /tmp/resticdash.pid            # Default: /var/run/resticdash.pid
