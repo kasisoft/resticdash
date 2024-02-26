@@ -68,6 +68,7 @@ Further information can be found here: [README.md](./install/README.md)
 [kasisoft.com]: https://kasisoft.com
 [license]: ./LICENSE
 [pex]: https://docs.pex-tool.org/
+[pnpm]: https://pnpm.io/
 [python]: https://www.python.org/
 [restic]: https://restic.net/
 [resticpy]: https://github.com/mtlynch/resticpy
