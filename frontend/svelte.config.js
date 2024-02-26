@@ -14,12 +14,11 @@ const config = {
         adapter: adapter(),
 
         alias: {
-            '$lib': './src/lib',
-            '$i18n': './src/i18n',
-            '$assets': './src/assets',
-            '$src': './src'
+            $lib: './src/lib',
+            $i18n: './src/i18n',
+            $assets: './src/assets',
+            $src: './src'
         }
-        
     }
 };
 
