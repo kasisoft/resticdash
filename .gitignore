@@ -6,4 +6,6 @@ node_modules/
 *.pex
 fs/backups/
 fs/content/
+backend/build/
+
 
