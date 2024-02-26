@@ -27,8 +27,8 @@ devDependencies:
     specifier: ^7.0.0
     version: 7.0.2(eslint@8.57.0)(typescript@5.3.3)
   arktype:
-    specifier: 2.0.0-dev.4
-    version: 2.0.0-dev.4
+    specifier: 1.0.29-alpha
+    version: 1.0.29-alpha
   autoprefixer:
     specifier: ^10.4.16
     version: 10.4.17(postcss@8.4.35)
@@ -108,16 +108,6 @@ packages:
     dependencies:
       '@jridgewell/gen-mapping': 0.3.4
       '@jridgewell/trace-mapping': 0.3.23
-    dev: true
-
-  /@arktype/schema@0.0.6:
-    resolution: {integrity: sha512-Z+Y3Sy+xyRCNM2sbQtWvVZoJgdoaR/MUypWJHoc8wl47lxU0GH0J7QrkgYi5dVhRS97nfPIaDLWyoJXEOTiHzA==}
-    dependencies:
-      '@arktype/util': 0.0.23
-    dev: true
-
-  /@arktype/util@0.0.23:
-    resolution: {integrity: sha512-MwtDGjbgfXWxlExjIL78HvPlWOma1XFEcDd3VWuCPMt/f+3TR7fXyiGFNlIYZGOYdOIU7qgjaE8dmbd6jdJa3Q==}
     dev: true
 
   /@esbuild/aix-ppc64@0.19.12:
@@ -982,11 +972,8 @@ packages:
       dequal: 2.0.3
     dev: true
 
-  /arktype@2.0.0-dev.4:
-    resolution: {integrity: sha512-1AgVN3A2ngzp3cRuNF8WXZr85B38jrc7lnOkplB4iHbGxUNvI9IyuhzAJtqCjDAo05pXpY2CxLaeSHtANIpF7Q==}
-    dependencies:
-      '@arktype/schema': 0.0.6
-      '@arktype/util': 0.0.23
+  /arktype@1.0.29-alpha:
+    resolution: {integrity: sha512-glMLgVhIQRSkR3tymiS+POAcWVJH09sfrgic0jHnyFL8BlhHAJZX2BzdImU9zYr1y9NBqy+U93ZNrRTHXsKRDw==}
     dev: true
 
   /array-union@2.1.0:
