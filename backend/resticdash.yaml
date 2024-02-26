@@ -7,3 +7,32 @@ settings:
 
     # The PID file which will receive the process ID. Needed in conjunction with the kill option.
     pidfile: /tmp/resticdash.pid            # Default: /var/run/resticdash.pid
+
+
+# This sections provides a list of all restic repositories. The key must be an unique name.
+backups:
+
+    # The key to be used for this repository.
+    none:
+
+        # This can be either the password itself or a file containing the password.
+        password: "e3a9abaa-6089-4973-98b2-1fceb481452c"
+
+        # The location of the repository.
+        repository: "/home/kasimir/dev/projects/python/resticdash/fs/backups/none"
+
+        # The time delay in seconds after which a backup should have occured.. If this time is exceeded the backup
+        # will be considered to be overdue.
+        backup_fail_delay: 86400    # Default: settings.backup_fail_delay
+
+    one:
+        password: "c2f19138-6d65-4269-a2cd-2072b2648ba6"
+        repository: "/home/kasimir/dev/projects/python/resticdash/fs/backups/one"
+
+    two:
+        password: "3b5c75c7-dd34-4c93-b25e-0af2e5da0ddc"
+        repository: "/home/kasimir/dev/projects/python/resticdash/fs/backups/two"
+
+    many:
+        password: "a9d60700-1b68-4efd-acb7-ab28108066cc"
+        repository: "/home/kasimir/dev/projects/python/resticdash/fs/backups/many"
