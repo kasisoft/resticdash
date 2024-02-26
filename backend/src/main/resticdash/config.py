@@ -48,6 +48,9 @@ class CfgBackup:
 @dataclass
 class CfgSettings:
 
+    # The location within the filesystem of the restic executable or the name of the executable on the path.
+    restic: str = 'restic'
+
     # The time delay in seconds after which a backup should have occured
     backup_fail_delay: int = 86400  # 1 day
 
@@ -62,6 +65,7 @@ class CfgSettings:
 
     def __post_init__(self):
         validation.require_min(self.backup_fail_delay, 60, 'backup_fail_delay')
+        validation.require_executable(self.restic)
 
 
 @dataclass_json

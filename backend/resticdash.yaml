@@ -5,6 +5,10 @@ settings:
     # The log level to be used after this configuration file has been parsed
     log_level: DEBUG
 
+    # The location of the restic executable. It will be taken of the PATH if available.
+    restic: restic      # Default: restic
+
+
     # The PID file which will receive the process ID. Needed in conjunction with the kill option.
     pidfile: /tmp/resticdash.pid            # Default: /var/run/resticdash.pid
 
