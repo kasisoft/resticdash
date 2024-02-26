@@ -23,9 +23,9 @@ In order to start you need to run [init.sh] first which will create the followin
 
 If you want to change the "content" you can rerun the script [random-files.sh].
 
-The other scripts will accept numerical parameters whereas the first must be a value between 0 to 3 in order to select a [restic] repository (see [common.sh] for insights).
+The other scripts will accept numerical parameters whereas the first must be a value between __0 to 3__ in order to select a [restic] repository (see [common.sh] for insights).
 
-[backup.sh] accepts a second numerical parameter which can be 0 or 1 in order to backup a content tree from the subdirectory ___content___.
+[backup.sh] accepts a second numerical parameter which can be __0 or 1__ in order to backup a content tree from the subdirectory ___content___.
 
 Examples:
 

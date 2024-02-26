@@ -32,11 +32,12 @@ You can preview the production build with `pnpm preview`.
 
 # Resources
 
-* [flowbite-quickstart]
+* [flowbite-quickstart] - Quickstart into Flowbite
+* [richharris-runes]: - Introduction into Svelte 5 runes
 
 
 [flowbite-quickstart]: https://flowbite-svelte.com/docs/pages/quickstart
-
+[richharris-runes]: https://www.youtube.com/watch?v=RVnxF3j3N8U
 
 [ukraine-readme]: https://github.com/vshymanskyy/StandWithUkraine/blob/main/docs/README.md
 [ukraine-svg]: https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/badges/StandWithUkraine.svg

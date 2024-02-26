@@ -5,6 +5,13 @@ export FRONTEND=$(readlink -f "${DIRNAME}/../frontend")
 export BACKEND=$(readlink -f "${DIRNAME}/../backend")
 export PACKAGEDIR="${DIRNAME}/resticdash"
 
+export OLD_VERSION=$(jq .version "${FRONTEND}/package.json")
+export OLD_VERSION="${OLD_VERSION%\"}"
+export OLD_VERSION="${OLD_VERSION#\"}"
+
+export GIT_SHORTID=$(git rev-parse --short HEAD)
+export TAG="${OLD_VERSION}-${GIT_SHORTID}"
+
 rm -rf "${PACKAGEDIR}"
 mkdir -p "${PACKAGEDIR}"
 
@@ -32,5 +39,6 @@ chmod +x "${PACKAGEDIR}/install.sh"
 chmod +x "${PACKAGEDIR}/uninstall.sh"
 
 echo "Creating archive..."
-tar zcf "${DIRNAME}/resticdash.tgz" "resticdash/"
+tar zcf "${DIRNAME}/resticdash-${TAG}.tgz" "resticdash/"
+git tag ${TAG}
 echo "Done"

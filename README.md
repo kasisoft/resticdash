@@ -16,11 +16,12 @@ So this little dashboard serves as a useful playground and a way to practice oth
 
 ## A note of caution
 
-Everything is Linux based and primarily meant to be used for myself.
-Therefore you can't assume production quality here. 
-However I appreciate any kind of feedback to improve my codebase and/or this application.
+* I myself am neither a [python] nor a frontend developer. So the codebase is based upon a very small skillset.
 
-I'm not visually gifted so the UI doesn't look very appealing. However it's sufficient in it's current state. Suggestions for improvements are also welcome.
+* Everything is based on Linux as it's meant to be used for myself. However I appreciate any kind of feedback to improve or fix my codebase.
+
+* The UI isn't very appealing as I clearly have no talent for visual stuff. Suggestions are welcome.
+
 
 
 ## Repository Structure
