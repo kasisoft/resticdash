@@ -4,6 +4,9 @@
     import Header from '$lib/components/Header.svelte';
     import Footer from '$lib/components/Footer.svelte';
     import { dictionary, getLocaleFromNavigator, getLocaleFromQueryString, init } from 'svelte-i18n';
+    import { ResticDashClient } from "$lib/client";
+    import { alertStore, configStore } from "$lib/stores.svelte";
+
     export let data;
 
     dictionary.set(data.dictionary);
@@ -17,6 +20,16 @@
         fallbackLocale: 'en',
         initialLocale: lang, 
     });
+
+    async function loadConfig() {
+        const client = new ResticDashClient(configStore.value.timeout, alertStore.setValue);
+        const result = await client.getConfig();
+        if (result !== undefined) {
+            configStore.setValue(result);
+        }
+    }
+
+    loadConfig();
 
 </script>
 
