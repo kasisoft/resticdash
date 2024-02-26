@@ -30,6 +30,9 @@ removable_password_files: List[str] = []
 configuration: Optional[CfgResticDash] = None
 
 
+def view_get_frontend_config():
+    return configuration.frontend.to_dict()
+
 
 def view_get_restic():
     # import time
@@ -54,6 +57,7 @@ def _setup_flask(static_dir: Optional[str]) -> StoppableFlask:
 
     api_blueprint = Blueprint('api', __name__)
     api_blueprint.add_url_rule('/restic', 'get_restic', view_get_restic)
+    api_blueprint.add_url_rule('/config', 'get_frontend_config', view_get_frontend_config)
     result.register_blueprint(api_blueprint, f'{configuration.settings.context_path}/api')
 
     if static_dir is not None:
