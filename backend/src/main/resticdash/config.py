@@ -1,11 +1,13 @@
 import logging
+import os
 
 from dataclasses_json import dataclass_json, config
 from dataclasses import dataclass, field
-from typing import Optional
+from typing import Optional, Dict
 from enum import Enum
 
 from resticdash.resticdashexception import ResticDashException
+from resticdash.utils import validation
 
 
 class LogLevel(Enum):
@@ -26,6 +28,22 @@ def _loglevel_from_str(value: str) -> LogLevel:
 
 @dataclass_json
 @dataclass
+class CfgBackup:
+
+    # Either the password or the location of a file that contains the password.
+    password: str
+
+    # The directory for the repository
+    repository: str
+
+    # The time delay in seconds after which a backup should have occured. By default the globally configured value.
+    backup_fail_delay: Optional[int] = None
+
+    def __post_init__(self):
+        validation.require_directory(self.repository)
+        validation.require_directory(os.path.join(self.repository, 'locks'))
+
+
 class CfgSettings:
 
     # Location of the PID file for resticdash
@@ -38,10 +56,12 @@ class CfgSettings:
     ))
 
 
+
 @dataclass_json
 @dataclass
 class CfgResticDash:
 
+    backups: Dict[str, CfgBackup] = field(default_factory=dict)
     settings: Optional[CfgSettings] = None
     version: int = 1
 
@@ -49,3 +69,9 @@ class CfgResticDash:
 
         if self.settings is None:
             self.settings = CfgSettings()
+        validation.require_not_empty(self.backups, "There must be at least one backup declaration !")
+
+        for cfg_backup in self.backups.values():
+            if cfg_backup.backup_fail_delay is None:
+                cfg_backup.backup_fail_delay = self.settings.backup_fail_delay
+
