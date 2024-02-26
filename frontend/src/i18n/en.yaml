@@ -1,0 +1,13 @@
+general:
+    error: "Error"
+    check_logs: "Failed to fetch the data from the backend. Check the logs for more details."
+    connection_aborted: "Timeout: The server did not respond in an apropriate time frame."
+
+backup:
+    snapshots: "Snapshots"
+    short_id: "Short ID"
+    date: "Date"
+    time: "Time"
+loading:
+    label: "Loading..."
+    timeout: "Countdown until timeout !"

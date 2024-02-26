@@ -1,0 +1,13 @@
+general:
+    error: "Fehler"
+    check_logs: "Die Daten konnten nicht vom Server geholt werden. Prüfen Sie den Browser-Log für mehr Details."
+    connection_aborted: "Timeout: Der Server antwortete nicht in einem angemessenen Zeitraum."
+
+backup:
+    snapshots: "Schnappschüsse"
+    short_id: "Kurze ID"
+    date: "Datum"
+    time: "Zeit"
+loading:
+    label: "Lade..."
+    timeout: "Zeit bis zum Timeout!"
