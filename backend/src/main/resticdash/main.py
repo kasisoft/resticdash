@@ -1,5 +1,8 @@
 import logging
+import signal
 import sys
+
+from setproctitle import setproctitle
 
 NAME = "resticdash"
 
@@ -12,12 +15,18 @@ logging.basicConfig(
 logger = logging.getLogger(NAME)
 
 
+def _shutdown(signal, frame):
+    pass
+
+
 def main():
     pass
 
 
 if __name__ == '__main__':
     try:
+        setproctitle(NAME)
+        signal.signal(signal.SIGINT, _shutdown)
         main()
     except Exception as ex:
         logger.error(f"{NAME} failed", exc_info=ex)
