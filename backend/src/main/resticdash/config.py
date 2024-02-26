@@ -44,7 +44,12 @@ class CfgBackup:
         validation.require_directory(os.path.join(self.repository, 'locks'))
 
 
+@dataclass_json
+@dataclass
 class CfgSettings:
+
+    # The time delay in seconds after which a backup should have occured
+    backup_fail_delay: int = 86400  # 1 day
 
     # Location of the PID file for resticdash
     pidfile: str = '/var/run/resticdash.pid'
@@ -55,6 +60,8 @@ class CfgSettings:
         decoder=_loglevel_from_str
     ))
 
+    def __post_init__(self):
+        validation.require_min(self.backup_fail_delay, 60, 'backup_fail_delay')
 
 
 @dataclass_json
@@ -69,6 +76,7 @@ class CfgResticDash:
 
         if self.settings is None:
             self.settings = CfgSettings()
+
         validation.require_not_empty(self.backups, "There must be at least one backup declaration !")
 
         for cfg_backup in self.backups.values():
