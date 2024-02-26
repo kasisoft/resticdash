@@ -21,3 +21,8 @@ def require_directory(filepath: str):
 def require_not_empty(obj, msg: str):
     if (obj is None) or (len(obj) == 0):
         raise ResticDashException(msg)
+
+
+def require_min(value: int, min_value: int, name: str):
+    if value < min_value:
+        raise ResticDashException(f"The value {value} for {name} must be at least greater or equal to {min_value}");
