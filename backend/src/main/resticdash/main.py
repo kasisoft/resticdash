@@ -30,6 +30,13 @@ removable_password_files: List[str] = []
 configuration: Optional[CfgResticDash] = None
 
 
+
+def view_get_restic():
+    # import time
+    # time.sleep(12)
+    if backupmanager is not None:
+        return backupmanager.get_all_backup_infos()
+    return []
 def _load_configuration(configuration_file) -> tuple[Optional[CfgResticDash], list[str]]:
     result = load_yaml(CfgResticDash, configuration_file, True)
     to_remove: list[str] = []
@@ -44,6 +51,10 @@ def _load_configuration(configuration_file) -> tuple[Optional[CfgResticDash], li
 def _setup_flask(static_dir: Optional[str]) -> StoppableFlask:
 
     result = StoppableFlask(__name__, configuration.settings.port, origins=configuration.settings.origins)
+
+    api_blueprint = Blueprint('api', __name__)
+    api_blueprint.add_url_rule('/restic', 'get_restic', view_get_restic)
+    result.register_blueprint(api_blueprint, f'{configuration.settings.context_path}/api')
 
     if static_dir is not None:
 
@@ -82,6 +93,9 @@ def _shutdown(signal, frame):
         except Exception as ex:
             logger.error("Failed to stop the BackupManager", exc_info=ex)
         backupmanager = None
+
+    # necessary to kill Flask as it doesn't expose it's internal server
+    os.kill(os.getpid(), signal.SIGTERM)
 
     logger.info("... completed shutdown")
 
