@@ -1,1 +1,6 @@
 version: 2
+
+settings:
+
+    # The PID file which will receive the process ID. Needed in conjunction with the kill option.
+    pidfile: /tmp/resticdash.pid            # Default: /var/run/resticdash.pid
