@@ -2,12 +2,15 @@ import argparse
 import logging
 import os
 
+from resticdash.utils.validation import require_file
+
 logger = logging.getLogger(__name__)
 
 
 def _locate_configuration_file(configfile: str) -> str:
     result = os.path.normpath(os.path.abspath(configfile))
     logger.debug(f"Using configuration file '{result}'!")
+    require_file(result)
     return result
 
 
