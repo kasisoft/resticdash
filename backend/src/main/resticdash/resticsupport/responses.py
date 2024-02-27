@@ -1,7 +1,8 @@
 from dataclasses_json import dataclass_json, config
 from dataclasses import dataclass, field
 from typing import List, Optional
-from datetime import datetime, timezone
+from datetime import timezone
+from dateutil import parser
 
 from resticdash.resticdashexception import ResticDashException
 
@@ -10,7 +11,7 @@ from resticdash.resticdashexception import ResticDashException
 # it's always proper ISO8601 and UTC based.
 def _grant_iso8601_utc(strvalue: str) -> str:
     try:
-        fromiso = datetime.fromisoformat(strvalue)
+        fromiso = parser.parse(strvalue)
         return fromiso.astimezone(timezone.utc).isoformat()
     except Exception as ex:
         raise ResticDashException(f"Failed to process date {strvalue} !", ex)
