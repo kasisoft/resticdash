@@ -11,4 +11,5 @@ __pycache__/
 *.egg-info/
 install/resticdash/
 install/resticdash*.tgz
+.env.local
 
