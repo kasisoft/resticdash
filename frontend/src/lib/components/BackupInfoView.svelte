@@ -1,21 +1,28 @@
 <script lang="ts">
+	import { backupinfosStore } from '$lib/stores.svelte';
+
 
     import type { BackupInfos, SnapshotInfo } from '$lib/types';
     import { _ } from 'svelte-i18n';
 
     export let backupInfo: BackupInfos;
-    
+
     let snapshotInfos: SnapshotInfo[] = [];
 
     let failed: boolean = false;
-    if (backupInfo && backupInfo.snapshots.length > 0) {
-        const lastBackup = backupInfo.snapshots[backupInfo.snapshots.length - 1].time;
-        const now        = new Date();
-        const millis     = now.getTime() - lastBackup.getTime();
-        const seconds    = millis / 1000;
-        failed           = seconds >= backupInfo.backup_fail_delay;
-        snapshotInfos.push(backupInfo.snapshots[0]);
-        snapshotInfos.push(backupInfo.snapshots[backupInfo.snapshots.length - 1]);
+    if (backupInfo) {
+        if (backupInfo.snapshots.length > 0) {
+            const lastBackup = backupInfo.snapshots[backupInfo.snapshots.length - 1].time;
+            const now        = new Date();
+            const millis     = now.getTime() - lastBackup.getTime();
+            const seconds    = millis / 1000;
+            failed           = seconds >= backupInfo.backup_fail_delay;
+            snapshotInfos.push(backupInfo.snapshots[0]);
+            snapshotInfos.push(backupInfo.snapshots[backupInfo.snapshots.length - 1]);
+        } else {
+            // no snapshots is considered to be an error
+            failed = true;
+        }
     }
 
     const colorClass = failed ? "bg-red-200" : "bg-green-200";
