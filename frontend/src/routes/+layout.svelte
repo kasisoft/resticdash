@@ -6,22 +6,16 @@
     import ErrorMessageView from '$lib/components/ErrorMessageView.svelte';
     import Header from '$lib/components/Header.svelte';
     import Footer from '$lib/components/Footer.svelte';
-    
+
     import { ResticDashClient } from '$lib/client';
     import { alertStore, configStore } from '$lib/stores.svelte';
 
     export let data;
 
     dictionary.set(data.dictionary);
-
-    let lang = getLocaleFromQueryString('lang');
-    if (!lang) {
-        lang = getLocaleFromNavigator();
-    }
-
     init({
         fallbackLocale: 'en',
-        initialLocale: lang, 
+        initialLocale: getLocaleFromQueryString('lang') ?? getLocaleFromNavigator(),
     });
 
     async function loadConfig() {
