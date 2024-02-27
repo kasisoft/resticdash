@@ -42,21 +42,25 @@ class BackupData:
 
             try:
                 cfg_backup: CfgBackup = self.cfg[name]
+                if cfg_backup.has_dir():
 
-                restic.repository = cfg_backup.repository
-                restic.password_file = cfg_backup.password
-                restic.use_cache = False
+                    restic.repository = cfg_backup.repository
+                    restic.password_file = cfg_backup.password
+                    restic.use_cache = False
 
-                # fetch the json result from our repository
-                json_result: List[Dict] = restic.snapshots("--no-lock")
-                logger.debug(f"Found {len(json_result)} snapshot records for '{name}'")
+                    # fetch the json result from our repository
+                    json_result: List[Dict] = restic.snapshots("--no-lock")
+                    logger.debug(f"Found {len(json_result)} snapshot records for '{name}'")
 
-                # store the outcome
-                self.backup_infos[name] = BackupInfos(
-                    name,
-                    cfg_backup.backup_fail_delay,
-                    self._create_snapshots(json_result)
-                )
+                    # store the outcome
+                    self.backup_infos[name] = BackupInfos(
+                        name,
+                        cfg_backup.backup_fail_delay,
+                        self._create_snapshots(json_result)
+                    )
+
+                else:
+                    self.backup_infos[name] = BackupInfos(name, cfg_backup.backup_fail_delay, [])
 
             except Exception as ex:
                 logger.error(f"Failed to execute restic for {name}", exc_info=ex)

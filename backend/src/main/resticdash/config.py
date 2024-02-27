@@ -39,9 +39,11 @@ class CfgBackup:
     # The time delay in seconds after which a backup should have occured. By default the globally configured value.
     backup_fail_delay: Optional[int] = None
 
-    def __post_init__(self):
-        validation.require_directory(self.repository)
-        validation.require_directory(os.path.join(self.repository, 'locks'))
+    def get_locks_dir(self) -> str:
+        return os.path.join(self.repository, 'locks')
+
+    def has_dir(self) -> bool:
+        return os.path.isdir(self.get_locks_dir())
 
 
 @dataclass_json
@@ -122,4 +124,3 @@ class CfgResticDash:
         for cfg_backup in self.backups.values():
             if cfg_backup.backup_fail_delay is None:
                 cfg_backup.backup_fail_delay = self.settings.backup_fail_delay
-
