@@ -10,7 +10,7 @@
     import { ResticDashClient } from '$lib/client';
     import { alertStore, configStore } from '$lib/stores.svelte';
 
-    export let data;
+    let { data } = $props();
 
     dictionary.set(data.dictionary);
     init({

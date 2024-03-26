@@ -1,11 +1,9 @@
 <script lang="ts">
-	import { backupinfosStore } from '$lib/stores.svelte';
-
 
     import type { BackupInfos, SnapshotInfo } from '$lib/types';
     import { _ } from 'svelte-i18n';
 
-    export let backupInfo: BackupInfos;
+    let { backupInfo } = $props<{ backupInfo: BackupInfos }>();
 
     let snapshotInfos: SnapshotInfo[] = [];
 
