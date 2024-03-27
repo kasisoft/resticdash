@@ -8,6 +8,7 @@ backup:
     short_id: "Short ID"
     date: "Date"
     time: "Time"
+
 loading:
     label: "Loading..."
-    timeout: "Countdown until timeout !"
+    timeout: "Countdown until timeout:"
