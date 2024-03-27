@@ -4,9 +4,6 @@ const config = {
         './src/**/*.{html,js,svelte,ts}',
         './node_modules/svelte-5-ui-lib/**/*.{html,js,svelte,ts}'
     ],
-    plugins: [
-        require('flowbite/plugin')
-    ],
     darkMode: 'class',
     /* https://tailwindcss.com/docs/theme */
     theme: {
