@@ -1,11 +1,22 @@
-<div class="flex">
-    <svg  xmlns="http://www.w3.org/2000/svg">
-        <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="60" fill="#FF7F50">ResticDash</text>
-    </svg>
-</div>
+<script lang="ts">
+
+    import { Darkmode } from 'svelte-5-ui-lib';
+
+    import ErrorMessageView from '$lib/components/ErrorMessageView.svelte';
+
+</script>
+
+<header class="full-width content-grid">
+    <div class="flex flex-row justify-between">
+        <h1 class="text-6xl">ResticDash</h1>
+        <Darkmode btnclass="dark:bg-primary-900 hover:dark:bg-primary-900 bg-primary-300 hover:bg-primary-300"/>
+    </div>
+    <ErrorMessageView />
+</header>
+
 
 <style lang="postcss">
-    div {
-        justify-content: center;
+    header {
+        grid-template-rows: var(--header-height) auto;
     }
 </style>

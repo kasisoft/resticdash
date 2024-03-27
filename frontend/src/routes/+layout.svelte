@@ -1,9 +1,9 @@
 <script lang="ts">
 
     import '$src/styles.pcss';
+
     import { dictionary, getLocaleFromNavigator, getLocaleFromQueryString, init } from 'svelte-i18n';
 
-    import ErrorMessageView from '$lib/components/ErrorMessageView.svelte';
     import Header from '$lib/components/Header.svelte';
     import Footer from '$lib/components/Footer.svelte';
 
@@ -31,16 +31,11 @@
 </script>
 
 <div class="app content-grid">
-    <header class="full-width content-grid">
-        <Header />
-        <ErrorMessageView />
-    </header>
+    <Header />
     <main class="full-width content-grid">
         <slot />
     </main>
-    <footer class="full-width content-grid">
-        <Footer />
-    </footer>
+    <Footer />
 </div>
 
 
@@ -51,16 +46,9 @@
         display: grid;
         grid-template-rows: auto 1fr auto;
     }
-    header {
-        grid-template-rows: var(--header-height) auto;
-        background-color: theme('colors.primary.300');
-    }
     main {
         height: 100%;
         width: 100%;
-        background-color: theme('colors.primary.100');
-    }
-    footer {
-        background-color: theme('colors.primary.300');
+        background-color: var(--color-light-background);
     }
 </style>

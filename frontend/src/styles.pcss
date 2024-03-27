@@ -10,6 +10,24 @@
 
     --outer-padding: 2rem;
 
+    --color-dark-background:    theme('colors.primary.300');
+    --color-light-background:   theme('colors.primary.200');
+    --color-text:               theme('colors.primary.700');
+
+}
+
+@layer base {
+    h1, h2, h3, h4, h5, h6, p, a, svg {
+        color: var(--color-text);
+    }
+    h1, h2, h3, h4, h5, h6 {
+        margin-top: auto;
+        margin-bottom: auto;
+    }
+}
+
+body {
+    background-color: var(--color-dark-background);
 }
 
 .content-grid {
@@ -26,4 +44,16 @@
 
 .full-width {
     grid-column: full-width;
+}
+
+
+/*
+ * DARK MODE
+ */
+
+
+html.dark {
+    --color-dark-background:   theme('colors.primary.900');
+    --color-light-background:  theme('colors.primary.800');
+    --color-text:              theme('colors.primary.300');
 }
