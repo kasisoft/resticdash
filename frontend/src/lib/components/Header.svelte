@@ -9,7 +9,7 @@
 <header class="full-width content-grid">
     <div class="flex flex-row justify-between">
         <h1 class="text-6xl">ResticDash</h1>
-        <Darkmode btnclass="dark:bg-primary-900 hover:dark:bg-primary-900 bg-primary-300 hover:bg-primary-300"/>
+        <Darkmode btnclass="dark:bg-black hover:dark:bg-black bg-primary-300 hover:bg-primary-300"/>
     </div>
     <ErrorMessageView />
 </header>
