@@ -1,19 +1,24 @@
 <script lang="ts">
 
-    import BackupInfoView from '$lib/components/BackupInfoView.svelte';
-    import type { BackupInfos } from '$lib/types.js';
+    import SnapshotList from '$lib/components/SnapshotList.svelte';
+    import type { BackupInfos, SnapshotInfo } from '$lib/types.js';
 
     let { data } = $props();
 
     const info: BackupInfos = data.info;
 
+    function handleSelect(event) {
+        const snapshot: SnapshotInfo = event.detail.message;
+        console.log(JSON.stringify(snapshot));
+    }
+
 </script>
 
+{#if info}
 <div>
-    {#if info}
-        <BackupInfoView backupInfo={info} />
-    {/if}
+    <SnapshotList on:select={handleSelect} snapshots={info.snapshots} />
 </div>
+{/if}
 
 
 <style lang="postcss">
