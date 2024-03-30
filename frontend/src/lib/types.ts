@@ -16,6 +16,12 @@ export const SnapshotInfoDef = type({
     "id": "string",
     "short_id": "7<string<9",
     "time": ["string", "|>", ark.parsedDate],
+    "gid": "string",
+    "uid": "string",
+    "hostname": "string",
+    "tree": "string",
+    "username": "string",
+    "paths": "string[]",
 });
 
 export type SnapshotInfo = typeof SnapshotInfoDef.infer;
