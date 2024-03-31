@@ -23,6 +23,10 @@ So this little dashboard serves as a useful playground and a way to practice oth
 * The UI isn't very appealing as I clearly have no talent for visual stuff. Suggestions are welcome.
 
 
+## Project Walkthrouhg
+
+* [Youtube: A Dashboard for Restic](https://www.youtube.com/watch?v=RLruLqvh0_A)
+
 
 ## Repository Structure
 
