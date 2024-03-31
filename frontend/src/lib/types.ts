@@ -16,11 +16,11 @@ export const SnapshotInfoDef = type({
     "id": "string",
     "short_id": "7<string<9",
     "time": ["string", "|>", ark.parsedDate],
-    "gid": "string",
-    "uid": "string",
-    "hostname": "string",
-    "tree": "string",
-    "username": "string",
+    "gid": "string|null",
+    "uid": "string|null",
+    "hostname": "string|null",
+    "tree": "string|null",
+    "username": "string|null",
     "paths": "string[]",
 });
 
