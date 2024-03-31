@@ -10,7 +10,7 @@ In general there shouldn't be any issue with that but how can I be sure?
 
 That's where this dashboard comes in. It's meant to visually show if a backup ran in a specified timeframe. If it ran it's green and otherwise it will simply be red, so I might need to check in on that.
 
-Another reason for this dashboard is the fact that Ilike to dabble in other unfamiliar technologies as I'm primarily a Java/Kotlin/Spring dev.
+Another reason for this dashboard is the fact that I like to dabble in other unfamiliar technologies as I'm primarily a Java/Kotlin/Spring dev.
 So this little dashboard serves as a useful playground and a way to practice other stuff.
 
 
@@ -23,9 +23,9 @@ So this little dashboard serves as a useful playground and a way to practice oth
 * The UI isn't very appealing as I clearly have no talent for visual stuff. Suggestions are welcome.
 
 
-## Project Walkthrouhg
+## Project Walkthrouh
 
-* [Youtube: A Dashboard for Restic](https://www.youtube.com/watch?v=RLruLqvh0_A)
+[<img src="https://img.youtube.com/vi/RLruLqvh0_A/hqdefault.jpg" width="720" height="400"/>](https://www.youtube.com/embed/RLruLqvh0_A)
 
 
 ## Repository Structure
