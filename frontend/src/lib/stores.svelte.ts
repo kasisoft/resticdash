@@ -72,14 +72,14 @@ function buildBackupInfosList(input: string): BackupInfosList {
     return newObject<BackupInfosList>(input, [], BackupInfosListDef);
 }
 
-function buildFrontendCfgt(input: string): FrontendCfg {
+function buildFrontendCfg(input: string): FrontendCfg {
     return newObject<FrontendCfg>(input, DEFAULT_FRONTENDCFG, FrontendCfgDef);
 }
 
 const alertStore = createStore<string>('alertState', '');
 const applicationStateStore = createStore<ApplicationState>('applicationState', ApplicationState.Display);
 const backupinfosStore = createStore<BackupInfosList>('backupInfos', [], buildBackupInfosList);
-const configStore = createStore<FrontendCfg>('frontend', DEFAULT_FRONTENDCFG, buildFrontendCfgt);
+const configStore = createStore<FrontendCfg>('frontend', DEFAULT_FRONTENDCFG, buildFrontendCfg);
 const progressStore = createStore<number>('progress', DEFAULT_FRONTENDCFG.timeout);
 
 export { alertStore, applicationStateStore, backupinfosStore, configStore, progressStore };
