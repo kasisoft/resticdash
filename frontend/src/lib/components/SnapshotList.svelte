@@ -31,7 +31,28 @@
         </thead>
         <tbody>
             {#each snapshots as snapshot, j}
-            <tr class="hover:bg-primary-400" class:selected={j == selectedRow} on:click={() => selectRow(j)}>
+            <tr class="hover:bg-primary-400" class:selected={j == selectedRow} onclick={() => selectRow(j)}>
+                <td>{snapshot.time.toLocaleDateString()}</td>
+                <td>{snapshot.time.toLocaleTimeString()}</td>
+                <td>{snapshot.short_id}</td>
+            </tr>
+            {/each}
+            {#each snapshots as snapshot, j}
+            <tr class="hover:bg-primary-400" class:selected={j == selectedRow} onclick={() => selectRow(j)}>
+                <td>{snapshot.time.toLocaleDateString()}</td>
+                <td>{snapshot.time.toLocaleTimeString()}</td>
+                <td>{snapshot.short_id}</td>
+            </tr>
+            {/each}
+            {#each snapshots as snapshot, j}
+            <tr class="hover:bg-primary-400" class:selected={j == selectedRow} onclick={() => selectRow(j)}>
+                <td>{snapshot.time.toLocaleDateString()}</td>
+                <td>{snapshot.time.toLocaleTimeString()}</td>
+                <td>{snapshot.short_id}</td>
+            </tr>
+            {/each}
+            {#each snapshots as snapshot, j}
+            <tr class="hover:bg-primary-400" class:selected={j == selectedRow} onclick={() => selectRow(j)}>
                 <td>{snapshot.time.toLocaleDateString()}</td>
                 <td>{snapshot.time.toLocaleTimeString()}</td>
                 <td>{snapshot.short_id}</td>
@@ -50,6 +71,9 @@
     th {
         text-align: left;
         width: 10rem;
+    }
+    th, tr {
+        height: 1.75rem;
     }
     .selected {
         @apply bg-primary-400;

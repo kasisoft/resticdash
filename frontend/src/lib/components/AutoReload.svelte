@@ -35,7 +35,7 @@
 <div class="full-width">
 {#if applicationStateStore.value == ApplicationState.Display}
     <div class="progressbar">
-        <div class="progress" style="animation-duration: {configStore.value.reload}s;"/>
+        <div class="progress" style="animation-duration: {configStore.value.reload}s;"></div>
     </div>
 {:else if applicationStateStore.value  == ApplicationState.Loading}
     <div role="status">

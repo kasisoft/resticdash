@@ -33,6 +33,7 @@
         grid-template-columns: auto 1fr;
         column-gap: 1rem;
         row-gap: 1rem;
+
     }
 </style>
 

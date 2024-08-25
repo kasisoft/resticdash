@@ -33,7 +33,7 @@
 <div class="app content-grid">
     <Header />
     <main class="full-width content-grid">
-        <slot />
+        {@render data()}
     </main>
     <Footer />
 </div>
