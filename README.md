@@ -2,6 +2,11 @@
 
 # ResticDash
 
+> __ __
+> __AS OF 07-JAN-2026 this repository has been moved to ssh://git@git.kasisoft.com/daniel.kasmeroglu/resticdash.git__
+> __ __
+
+
 ## Motivation
 
 [restic] itself is a popular backup tool which works pretty reliable and efficiently.
